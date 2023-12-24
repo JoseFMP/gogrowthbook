@@ -21,15 +21,15 @@ var _ common.MappedNullable = &FeatureRolloutRule{}
 
 // FeatureRolloutRule struct for FeatureRolloutRule
 type FeatureRolloutRule struct {
-	Description interface{} `json:"description"`
-	Condition interface{} `json:"condition"`
+	Description *string `json:"description"`
+	Condition *string `json:"condition"`
 	SavedGroupTargeting interface{} `json:"savedGroupTargeting,omitempty"`
-	Id interface{} `json:"id"`
-	Enabled interface{} `json:"enabled"`
-	Type interface{} `json:"type"`
-	Value interface{} `json:"value"`
-	Coverage interface{} `json:"coverage"`
-	HashAttribute interface{} `json:"hashAttribute"`
+	Id *string `json:"id"`
+	Enabled *bool `json:"enabled"`
+	Type *FeatureRuleType `json:"type"`
+	Value *string `json:"value"`
+	Coverage *float64 `json:"coverage"`
+	HashAttribute *string `json:"hashAttribute"`
 }
 
 type _FeatureRolloutRule FeatureRolloutRule
@@ -38,7 +38,7 @@ type _FeatureRolloutRule FeatureRolloutRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFeatureRolloutRule(description interface{}, condition interface{}, id interface{}, enabled interface{}, type_ interface{}, value interface{}, coverage interface{}, hashAttribute interface{}) *FeatureRolloutRule {
+func NewFeatureRolloutRule(description *string, condition *string, id *string, enabled *bool, type_ *FeatureRuleType, value *string, coverage *float64, hashAttribute *string) *FeatureRolloutRule {
 	this := FeatureRolloutRule{}
 	this.Description = description
 	this.Condition = condition
@@ -73,15 +73,15 @@ func (o *FeatureRolloutRule) GetDescription() interface{} {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetDescriptionOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetDescriptionOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
 // SetDescription sets field value
-func (o *FeatureRolloutRule) SetDescription(v interface{}) {
+func (o *FeatureRolloutRule) SetDescription(v *string) {
 	o.Description = v
 }
 
@@ -99,15 +99,15 @@ func (o *FeatureRolloutRule) GetCondition() interface{} {
 // GetConditionOk returns a tuple with the Condition field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetConditionOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetConditionOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Condition) {
 		return nil, false
 	}
-	return &o.Condition, true
+	return o.Condition, true
 }
 
 // SetCondition sets field value
-func (o *FeatureRolloutRule) SetCondition(v interface{}) {
+func (o *FeatureRolloutRule) SetCondition(v *string) {
 	o.Condition = v
 }
 
@@ -158,15 +158,15 @@ func (o *FeatureRolloutRule) GetId() interface{} {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetIdOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // SetId sets field value
-func (o *FeatureRolloutRule) SetId(v interface{}) {
+func (o *FeatureRolloutRule) SetId(v *string) {
 	o.Id = v
 }
 
@@ -184,15 +184,15 @@ func (o *FeatureRolloutRule) GetEnabled() interface{} {
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetEnabledOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetEnabledOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.Enabled) {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
 // SetEnabled sets field value
-func (o *FeatureRolloutRule) SetEnabled(v interface{}) {
+func (o *FeatureRolloutRule) SetEnabled(v *bool) {
 	o.Enabled = v
 }
 
@@ -210,15 +210,15 @@ func (o *FeatureRolloutRule) GetType() interface{} {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetTypeOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetTypeOk() (*FeatureRuleType, bool) {
 	if o == nil || common.IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
 // SetType sets field value
-func (o *FeatureRolloutRule) SetType(v interface{}) {
+func (o *FeatureRolloutRule) SetType(v *FeatureRuleType) {
 	o.Type = v
 }
 
@@ -236,15 +236,15 @@ func (o *FeatureRolloutRule) GetValue() interface{} {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetValueOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetValueOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Value) {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
 // SetValue sets field value
-func (o *FeatureRolloutRule) SetValue(v interface{}) {
+func (o *FeatureRolloutRule) SetValue(v *string) {
 	o.Value = v
 }
 
@@ -262,15 +262,15 @@ func (o *FeatureRolloutRule) GetCoverage() interface{} {
 // GetCoverageOk returns a tuple with the Coverage field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetCoverageOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetCoverageOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Coverage) {
 		return nil, false
 	}
-	return &o.Coverage, true
+	return o.Coverage, true
 }
 
 // SetCoverage sets field value
-func (o *FeatureRolloutRule) SetCoverage(v interface{}) {
+func (o *FeatureRolloutRule) SetCoverage(v *float64) {
 	o.Coverage = v
 }
 
@@ -288,15 +288,15 @@ func (o *FeatureRolloutRule) GetHashAttribute() interface{} {
 // GetHashAttributeOk returns a tuple with the HashAttribute field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetHashAttributeOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetHashAttributeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.HashAttribute) {
 		return nil, false
 	}
-	return &o.HashAttribute, true
+	return o.HashAttribute, true
 }
 
 // SetHashAttribute sets field value
-func (o *FeatureRolloutRule) SetHashAttribute(v interface{}) {
+func (o *FeatureRolloutRule) SetHashAttribute(v *string) {
 	o.HashAttribute = v
 }
 

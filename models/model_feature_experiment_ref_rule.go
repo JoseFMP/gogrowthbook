@@ -22,13 +22,18 @@ var _ common.MappedNullable = &FeatureExperimentRefRule{}
 
 // FeatureExperimentRefRule struct for FeatureExperimentRefRule
 type FeatureExperimentRefRule struct {
-	Description interface{} `json:"description"`
-	Id interface{} `json:"id"`
-	Enabled interface{} `json:"enabled"`
-	Type interface{} `json:"type"`
-	Condition interface{} `json:"condition,omitempty"`
-	Variations interface{} `json:"variations"`
-	ExperimentId interface{} `json:"experimentId"`
+	Description *string `json:"description"`
+	Id *string `json:"id"`
+	Enabled *bool `json:"enabled"`
+	Type *string `json:"type"`
+	Condition *string `json:"condition,omitempty"`
+	Variations []FeatureExperimentRefRuleVariation `json:"variations"`
+	ExperimentId *string `json:"experimentId"`
+}
+
+type FeatureExperimentRefRuleVariation struct {
+  Value *string `json:"value"`
+  VariationID *string `json:"variationId"`
 }
 
 type _FeatureExperimentRefRule FeatureExperimentRefRule
@@ -37,7 +42,7 @@ type _FeatureExperimentRefRule FeatureExperimentRefRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFeatureExperimentRefRule(description interface{}, id interface{}, enabled interface{}, type_ interface{}, variations interface{}, experimentId interface{}) *FeatureExperimentRefRule {
+func NewFeatureExperimentRefRule(description *string, id *string, enabled *bool, type_ *string, variations []FeatureExperimentRefRuleVariation, experimentId *string) *FeatureExperimentRefRule {
 	this := FeatureExperimentRefRule{}
 	this.Description = description
 	this.Id = id
@@ -70,15 +75,15 @@ func (o *FeatureExperimentRefRule) GetDescription() interface{} {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRefRule) GetDescriptionOk() (*interface{}, bool) {
+func (o *FeatureExperimentRefRule) GetDescriptionOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
 // SetDescription sets field value
-func (o *FeatureExperimentRefRule) SetDescription(v interface{}) {
+func (o *FeatureExperimentRefRule) SetDescription(v *string) {
 	o.Description = v
 }
 
@@ -96,15 +101,15 @@ func (o *FeatureExperimentRefRule) GetId() interface{} {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRefRule) GetIdOk() (*interface{}, bool) {
+func (o *FeatureExperimentRefRule) GetIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // SetId sets field value
-func (o *FeatureExperimentRefRule) SetId(v interface{}) {
+func (o *FeatureExperimentRefRule) SetId(v *string) {
 	o.Id = v
 }
 
@@ -122,16 +127,16 @@ func (o *FeatureExperimentRefRule) GetEnabled() interface{} {
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRefRule) GetEnabledOk() (*interface{}, bool) {
+func (o *FeatureExperimentRefRule) GetEnabledOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.Enabled) {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
 // SetEnabled sets field value
-func (o *FeatureExperimentRefRule) SetEnabled(v interface{}) {
-	o.Enabled = v
+func (o *FeatureExperimentRefRule) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetType returns the Type field value
@@ -148,15 +153,15 @@ func (o *FeatureExperimentRefRule) GetType() interface{} {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRefRule) GetTypeOk() (*interface{}, bool) {
+func (o *FeatureExperimentRefRule) GetTypeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
 // SetType sets field value
-func (o *FeatureExperimentRefRule) SetType(v interface{}) {
+func (o *FeatureExperimentRefRule) SetType(v *string) {
 	o.Type = v
 }
 
@@ -172,11 +177,11 @@ func (o *FeatureExperimentRefRule) GetCondition() interface{} {
 // GetConditionOk returns a tuple with the Condition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRefRule) GetConditionOk() (*interface{}, bool) {
+func (o *FeatureExperimentRefRule) GetConditionOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Condition) {
 		return nil, false
 	}
-	return &o.Condition, true
+	return o.Condition, true
 }
 
 // HasCondition returns a boolean if a field has been set.
@@ -189,7 +194,7 @@ func (o *FeatureExperimentRefRule) HasCondition() bool {
 }
 
 // SetCondition gets a reference to the given interface{} and assigns it to the Condition field.
-func (o *FeatureExperimentRefRule) SetCondition(v interface{}) {
+func (o *FeatureExperimentRefRule) SetCondition(v *string) {
 	o.Condition = v
 }
 
@@ -207,15 +212,15 @@ func (o *FeatureExperimentRefRule) GetVariations() interface{} {
 // GetVariationsOk returns a tuple with the Variations field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRefRule) GetVariationsOk() (*interface{}, bool) {
+func (o *FeatureExperimentRefRule) GetVariationsOk() ([]FeatureExperimentRefRuleVariation, bool) {
 	if o == nil || common.IsNil(o.Variations) {
 		return nil, false
 	}
-	return &o.Variations, true
+	return o.Variations, true
 }
 
 // SetVariations sets field value
-func (o *FeatureExperimentRefRule) SetVariations(v interface{}) {
+func (o *FeatureExperimentRefRule) SetVariations(v []FeatureExperimentRefRuleVariation) {
 	o.Variations = v
 }
 
@@ -233,15 +238,15 @@ func (o *FeatureExperimentRefRule) GetExperimentId() interface{} {
 // GetExperimentIdOk returns a tuple with the ExperimentId field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRefRule) GetExperimentIdOk() (*interface{}, bool) {
+func (o *FeatureExperimentRefRule) GetExperimentIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.ExperimentId) {
 		return nil, false
 	}
-	return &o.ExperimentId, true
+	return o.ExperimentId, true
 }
 
 // SetExperimentId sets field value
-func (o *FeatureExperimentRefRule) SetExperimentId(v interface{}) {
+func (o *FeatureExperimentRefRule) SetExperimentId(v *string) {
 	o.ExperimentId = v
 }
 

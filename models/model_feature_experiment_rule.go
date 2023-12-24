@@ -21,16 +21,22 @@ var _ common.MappedNullable = &FeatureExperimentRule{}
 
 // FeatureExperimentRule struct for FeatureExperimentRule
 type FeatureExperimentRule struct {
-	Description interface{} `json:"description"`
-	Condition interface{} `json:"condition"`
-	Id interface{} `json:"id"`
-	Enabled interface{} `json:"enabled"`
-	Type interface{} `json:"type"`
-	TrackingKey interface{} `json:"trackingKey,omitempty"`
-	HashAttribute interface{} `json:"hashAttribute,omitempty"`
+	Description *string `json:"description"`
+	Condition *string `json:"condition"`
+	Id *string `json:"id"`
+	Enabled *bool `json:"enabled"`
+	Type *FeatureRuleType `json:"type"`
+	TrackingKey *string `json:"trackingKey,omitempty"`
+	HashAttribute *string `json:"hashAttribute,omitempty"`
 	Namespace *FeatureExperimentRuleNamespace `json:"namespace,omitempty"`
-	Coverage interface{} `json:"coverage,omitempty"`
-	Value interface{} `json:"value,omitempty"`
+	Coverage *float64 `json:"coverage,omitempty"`
+	Value []FeatureExperimentRuleValue `json:"value,omitempty"`
+}
+
+type FeatureExperimentRuleValue struct {
+  Value *string `json:"value"`
+  Weight *float64 `json:"weight"`
+  Name *string `json:"name"`
 }
 
 type _FeatureExperimentRule FeatureExperimentRule
@@ -39,7 +45,7 @@ type _FeatureExperimentRule FeatureExperimentRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFeatureExperimentRule(description interface{}, condition interface{}, id interface{}, enabled interface{}, type_ interface{}) *FeatureExperimentRule {
+func NewFeatureExperimentRule(description *string, condition *string, id *string, enabled *bool, type_ *FeatureRuleType) *FeatureExperimentRule {
 	this := FeatureExperimentRule{}
 	this.Description = description
 	this.Condition = condition
@@ -71,15 +77,15 @@ func (o *FeatureExperimentRule) GetDescription() interface{} {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetDescriptionOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetDescriptionOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
 // SetDescription sets field value
-func (o *FeatureExperimentRule) SetDescription(v interface{}) {
+func (o *FeatureExperimentRule) SetDescription(v *string) {
 	o.Description = v
 }
 
@@ -97,15 +103,15 @@ func (o *FeatureExperimentRule) GetCondition() interface{} {
 // GetConditionOk returns a tuple with the Condition field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetConditionOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetConditionOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Condition) {
 		return nil, false
 	}
-	return &o.Condition, true
+	return o.Condition, true
 }
 
 // SetCondition sets field value
-func (o *FeatureExperimentRule) SetCondition(v interface{}) {
+func (o *FeatureExperimentRule) SetCondition(v *string) {
 	o.Condition = v
 }
 
@@ -123,15 +129,15 @@ func (o *FeatureExperimentRule) GetId() interface{} {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetIdOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // SetId sets field value
-func (o *FeatureExperimentRule) SetId(v interface{}) {
+func (o *FeatureExperimentRule) SetId(v *string) {
 	o.Id = v
 }
 
@@ -149,15 +155,15 @@ func (o *FeatureExperimentRule) GetEnabled() interface{} {
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetEnabledOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetEnabledOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.Enabled) {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
 // SetEnabled sets field value
-func (o *FeatureExperimentRule) SetEnabled(v interface{}) {
+func (o *FeatureExperimentRule) SetEnabled(v *bool) {
 	o.Enabled = v
 }
 
@@ -175,15 +181,15 @@ func (o *FeatureExperimentRule) GetType() interface{} {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetTypeOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetTypeOk() (*FeatureRuleType, bool) {
 	if o == nil || common.IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
 // SetType sets field value
-func (o *FeatureExperimentRule) SetType(v interface{}) {
+func (o *FeatureExperimentRule) SetType(v *FeatureRuleType) {
 	o.Type = v
 }
 
@@ -199,11 +205,11 @@ func (o *FeatureExperimentRule) GetTrackingKey() interface{} {
 // GetTrackingKeyOk returns a tuple with the TrackingKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetTrackingKeyOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetTrackingKeyOk() (*string, bool) {
 	if o == nil || common.IsNil(o.TrackingKey) {
 		return nil, false
 	}
-	return &o.TrackingKey, true
+	return o.TrackingKey, true
 }
 
 // HasTrackingKey returns a boolean if a field has been set.
@@ -216,7 +222,7 @@ func (o *FeatureExperimentRule) HasTrackingKey() bool {
 }
 
 // SetTrackingKey gets a reference to the given interface{} and assigns it to the TrackingKey field.
-func (o *FeatureExperimentRule) SetTrackingKey(v interface{}) {
+func (o *FeatureExperimentRule) SetTrackingKey(v *string) {
 	o.TrackingKey = v
 }
 
@@ -232,11 +238,11 @@ func (o *FeatureExperimentRule) GetHashAttribute() interface{} {
 // GetHashAttributeOk returns a tuple with the HashAttribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetHashAttributeOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetHashAttributeOk() (*string, bool) {
 	if o == nil || common.IsNil(o.HashAttribute) {
 		return nil, false
 	}
-	return &o.HashAttribute, true
+	return o.HashAttribute, true
 }
 
 // HasHashAttribute returns a boolean if a field has been set.
@@ -249,7 +255,7 @@ func (o *FeatureExperimentRule) HasHashAttribute() bool {
 }
 
 // SetHashAttribute gets a reference to the given interface{} and assigns it to the HashAttribute field.
-func (o *FeatureExperimentRule) SetHashAttribute(v interface{}) {
+func (o *FeatureExperimentRule) SetHashAttribute(v *string) {
 	o.HashAttribute = v
 }
 
@@ -297,11 +303,11 @@ func (o *FeatureExperimentRule) GetCoverage() interface{} {
 // GetCoverageOk returns a tuple with the Coverage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetCoverageOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetCoverageOk() (*float64, bool) {
 	if o == nil || common.IsNil(o.Coverage) {
 		return nil, false
 	}
-	return &o.Coverage, true
+	return o.Coverage, true
 }
 
 // HasCoverage returns a boolean if a field has been set.
@@ -314,7 +320,7 @@ func (o *FeatureExperimentRule) HasCoverage() bool {
 }
 
 // SetCoverage gets a reference to the given interface{} and assigns it to the Coverage field.
-func (o *FeatureExperimentRule) SetCoverage(v interface{}) {
+func (o *FeatureExperimentRule) SetCoverage(v *float64) {
 	o.Coverage = v
 }
 
@@ -330,11 +336,11 @@ func (o *FeatureExperimentRule) GetValue() interface{} {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRule) GetValueOk() (*interface{}, bool) {
+func (o *FeatureExperimentRule) GetValueOk() ([]FeatureExperimentRuleValue, bool) {
 	if o == nil || common.IsNil(o.Value) {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
 // HasValue returns a boolean if a field has been set.
@@ -347,7 +353,7 @@ func (o *FeatureExperimentRule) HasValue() bool {
 }
 
 // SetValue gets a reference to the given interface{} and assigns it to the Value field.
-func (o *FeatureExperimentRule) SetValue(v interface{}) {
+func (o *FeatureExperimentRule) SetValue(v []FeatureExperimentRuleValue) {
 	o.Value = v
 }
 

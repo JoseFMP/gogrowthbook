@@ -21,13 +21,13 @@ var _ common.MappedNullable = &FeatureForceRule{}
 
 // FeatureForceRule struct for FeatureForceRule
 type FeatureForceRule struct {
-	Description interface{} `json:"description"`
-	Condition interface{} `json:"condition"`
-	SavedGroupTargeting interface{} `json:"savedGroupTargeting,omitempty"`
-	Id interface{} `json:"id"`
-	Enabled interface{} `json:"enabled"`
-	Type interface{} `json:"type"`
-	Value interface{} `json:"value"`
+	Description *string `json:"description"`
+	Condition *string `json:"condition"`
+	SavedGroupTargeting []FeatureRuleSavedGroupTargeting `json:"savedGroupTargeting,omitempty"`
+	Id *string `json:"id"`
+	Enabled *bool `json:"enabled"`
+	Type *FeatureRuleType `json:"type"`
+	Value *string `json:"value"`
 }
 
 type _FeatureForceRule FeatureForceRule
@@ -36,7 +36,7 @@ type _FeatureForceRule FeatureForceRule
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFeatureForceRule(description interface{}, condition interface{}, id interface{}, enabled interface{}, type_ interface{}, value interface{}) *FeatureForceRule {
+func NewFeatureForceRule(description *string, condition *string, id *string, enabled *bool, type_ *FeatureRuleType, value *string) *FeatureForceRule {
 	this := FeatureForceRule{}
 	this.Description = description
 	this.Condition = condition
@@ -69,15 +69,15 @@ func (o *FeatureForceRule) GetDescription() interface{} {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureForceRule) GetDescriptionOk() (*interface{}, bool) {
+func (o *FeatureForceRule) GetDescriptionOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
 // SetDescription sets field value
-func (o *FeatureForceRule) SetDescription(v interface{}) {
+func (o *FeatureForceRule) SetDescription(v *string) {
 	o.Description = v
 }
 
@@ -95,15 +95,15 @@ func (o *FeatureForceRule) GetCondition() interface{} {
 // GetConditionOk returns a tuple with the Condition field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureForceRule) GetConditionOk() (*interface{}, bool) {
+func (o *FeatureForceRule) GetConditionOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Condition) {
 		return nil, false
 	}
-	return &o.Condition, true
+	return o.Condition, true
 }
 
 // SetCondition sets field value
-func (o *FeatureForceRule) SetCondition(v interface{}) {
+func (o *FeatureForceRule) SetCondition(v *string) {
 	o.Condition = v
 }
 
@@ -119,11 +119,11 @@ func (o *FeatureForceRule) GetSavedGroupTargeting() interface{} {
 // GetSavedGroupTargetingOk returns a tuple with the SavedGroupTargeting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureForceRule) GetSavedGroupTargetingOk() (*interface{}, bool) {
+func (o *FeatureForceRule) GetSavedGroupTargetingOk() ([]FeatureRuleSavedGroupTargeting, bool) {
 	if o == nil || common.IsNil(o.SavedGroupTargeting) {
 		return nil, false
 	}
-	return &o.SavedGroupTargeting, true
+	return o.SavedGroupTargeting, true
 }
 
 // HasSavedGroupTargeting returns a boolean if a field has been set.
@@ -136,7 +136,7 @@ func (o *FeatureForceRule) HasSavedGroupTargeting() bool {
 }
 
 // SetSavedGroupTargeting gets a reference to the given interface{} and assigns it to the SavedGroupTargeting field.
-func (o *FeatureForceRule) SetSavedGroupTargeting(v interface{}) {
+func (o *FeatureForceRule) SetSavedGroupTargeting(v []FeatureRuleSavedGroupTargeting) {
 	o.SavedGroupTargeting = v
 }
 
@@ -154,15 +154,15 @@ func (o *FeatureForceRule) GetId() interface{} {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureForceRule) GetIdOk() (*interface{}, bool) {
+func (o *FeatureForceRule) GetIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // SetId sets field value
-func (o *FeatureForceRule) SetId(v interface{}) {
+func (o *FeatureForceRule) SetId(v *string) {
 	o.Id = v
 }
 
@@ -180,15 +180,15 @@ func (o *FeatureForceRule) GetEnabled() interface{} {
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureForceRule) GetEnabledOk() (*interface{}, bool) {
+func (o *FeatureForceRule) GetEnabledOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.Enabled) {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
 // SetEnabled sets field value
-func (o *FeatureForceRule) SetEnabled(v interface{}) {
+func (o *FeatureForceRule) SetEnabled(v *bool) {
 	o.Enabled = v
 }
 
@@ -206,15 +206,15 @@ func (o *FeatureForceRule) GetType() interface{} {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureForceRule) GetTypeOk() (*interface{}, bool) {
+func (o *FeatureForceRule) GetTypeOk() (*FeatureRuleType, bool) {
 	if o == nil || common.IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
 // SetType sets field value
-func (o *FeatureForceRule) SetType(v interface{}) {
+func (o *FeatureForceRule) SetType(v *FeatureRuleType) {
 	o.Type = v
 }
 
@@ -232,15 +232,15 @@ func (o *FeatureForceRule) GetValue() interface{} {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureForceRule) GetValueOk() (*interface{}, bool) {
+func (o *FeatureForceRule) GetValueOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Value) {
 		return nil, false
 	}
-	return &o.Value, true
+	return o.Value, true
 }
 
 // SetValue sets field value
-func (o *FeatureForceRule) SetValue(v interface{}) {
+func (o *FeatureForceRule) SetValue(v *string) {
 	o.Value = v
 }
 

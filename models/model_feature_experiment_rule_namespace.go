@@ -22,8 +22,8 @@ var _ common.MappedNullable = &FeatureExperimentRuleNamespace{}
 
 // FeatureExperimentRuleNamespace struct for FeatureExperimentRuleNamespace
 type FeatureExperimentRuleNamespace struct {
-	Enabled interface{} `json:"enabled"`
-	Name interface{} `json:"name"`
+	Enabled *bool `json:"enabled"`
+	Name *string `json:"name"`
 	Range interface{} `json:"range"`
 }
 
@@ -33,7 +33,7 @@ type _FeatureExperimentRuleNamespace FeatureExperimentRuleNamespace
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFeatureExperimentRuleNamespace(enabled interface{}, name interface{}, range_ interface{}) *FeatureExperimentRuleNamespace {
+func NewFeatureExperimentRuleNamespace(enabled *bool, name *string, range_ interface{}) *FeatureExperimentRuleNamespace {
 	this := FeatureExperimentRuleNamespace{}
 	this.Enabled = enabled
 	this.Name = name
@@ -63,15 +63,15 @@ func (o *FeatureExperimentRuleNamespace) GetEnabled() interface{} {
 // GetEnabledOk returns a tuple with the Enabled field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRuleNamespace) GetEnabledOk() (*interface{}, bool) {
+func (o *FeatureExperimentRuleNamespace) GetEnabledOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.Enabled) {
 		return nil, false
 	}
-	return &o.Enabled, true
+	return o.Enabled, true
 }
 
 // SetEnabled sets field value
-func (o *FeatureExperimentRuleNamespace) SetEnabled(v interface{}) {
+func (o *FeatureExperimentRuleNamespace) SetEnabled(v *bool) {
 	o.Enabled = v
 }
 
@@ -89,15 +89,15 @@ func (o *FeatureExperimentRuleNamespace) GetName() interface{} {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureExperimentRuleNamespace) GetNameOk() (*interface{}, bool) {
+func (o *FeatureExperimentRuleNamespace) GetNameOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
 // SetName sets field value
-func (o *FeatureExperimentRuleNamespace) SetName(v interface{}) {
+func (o *FeatureExperimentRuleNamespace) SetName(v *string) {
 	o.Name = v
 }
 
