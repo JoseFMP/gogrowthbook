@@ -140,13 +140,16 @@ func (v *NullableFeatureRule) UnmarshalJSON(src []byte) error {
 
 type FeatureRuleType string
 const FeatureRuleTypeForce = FeatureRuleType("force")
+const FeatureRuleTypeRollout = FeatureRuleType("rollout")
+const FeatureRuleTypeExperiment = FeatureRuleType("experiment")
+const FeatureRuleTypeExperimentRef = FeatureRuleType("experiment-ref")
 
-type SavedGroupTargeting string
-const SavedGroupTargetingAll = SavedGroupTargeting("all")
-const SavedGroupTargetingAny = SavedGroupTargeting("any")
-const SavedGroupTargetingNone = SavedGroupTargeting("none")
+type SavedGroupTargetingMatchType string
+const SavedGroupTargetingAll = SavedGroupTargetingMatchType("all")
+const SavedGroupTargetingAny = SavedGroupTargetingMatchType("any")
+const SavedGroupTargetingNone = SavedGroupTargetingMatchType("none")
 
 type FeatureRuleSavedGroupTargeting struct {
-  MatchType  SavedGroupTargeting `json:"matchType"`
+  MatchType  SavedGroupTargetingMatchType `json:"matchType"`
   SaveGroups []string `json:"savedGroups"`
 }
