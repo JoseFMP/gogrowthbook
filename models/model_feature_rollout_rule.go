@@ -23,7 +23,7 @@ var _ common.MappedNullable = &FeatureRolloutRule{}
 type FeatureRolloutRule struct {
 	Description *string `json:"description"`
 	Condition *string `json:"condition"`
-	SavedGroupTargeting interface{} `json:"savedGroupTargeting,omitempty"`
+	SavedGroupTargeting []FeatureRuleSavedGroupTargeting `json:"savedGroupTargeting,omitempty"`
 	Id *string `json:"id"`
 	Enabled *bool `json:"enabled"`
 	Type *FeatureRuleType `json:"type"`
@@ -123,11 +123,11 @@ func (o *FeatureRolloutRule) GetSavedGroupTargeting() interface{} {
 // GetSavedGroupTargetingOk returns a tuple with the SavedGroupTargeting field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *FeatureRolloutRule) GetSavedGroupTargetingOk() (*interface{}, bool) {
+func (o *FeatureRolloutRule) GetSavedGroupTargetingOk() ([]FeatureRuleSavedGroupTargeting, bool) {
 	if o == nil || common.IsNil(o.SavedGroupTargeting) {
 		return nil, false
 	}
-	return &o.SavedGroupTargeting, true
+	return o.SavedGroupTargeting, true
 }
 
 // HasSavedGroupTargeting returns a boolean if a field has been set.
@@ -140,7 +140,7 @@ func (o *FeatureRolloutRule) HasSavedGroupTargeting() bool {
 }
 
 // SetSavedGroupTargeting gets a reference to the given interface{} and assigns it to the SavedGroupTargeting field.
-func (o *FeatureRolloutRule) SetSavedGroupTargeting(v interface{}) {
+func (o *FeatureRolloutRule) SetSavedGroupTargeting(v []FeatureRuleSavedGroupTargeting) {
 	o.SavedGroupTargeting = v
 }
 
