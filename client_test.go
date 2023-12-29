@@ -18,16 +18,7 @@ const growthBookSecretKeyEnvName = "GROWTHBOOK_SECRET_KEY"
 // TestCanCreateAndReadFeature
 // creates a feature in GrowthBook, and reads it out afterward to double check it was really created
 func TestCanCreateAndReadFeature(t *testing.T) {
-	secretKey := os.Getenv(growthBookSecretKeyEnvName)
-	if secretKey == "" {
-		t.Logf(
-			"To run this test you must specify a GrowthBook secret key with admin rights through the environment variable named %s",
-			growthBookSecretKeyEnvName)
-		t.FailNow()
-	}
-
-	clientContext := context.Background()
-	clientContext = context.WithValue(clientContext, gogrowthbook.ContextAccessToken, secretKey)
+	clientContext := generateClientContext(t)
 
 	randomNumber := time.Now().UnixMilli()
 	featureID := fmt.Sprintf("go-growthbook-integration-test-%d", randomNumber)
@@ -66,14 +57,8 @@ func TestCanCreateAndReadFeature(t *testing.T) {
 					},
 				},
 			}
-			newFeatureReq := client.FeaturesAPI.PostFeature(clientContext).PostFeatureRequest(newFeature)
 
-			responsePayload, httpResponse, errDoingReq := newFeatureReq.Execute()
-			assert.NoErrorf(t, errDoingReq, "The request should return success")
-			assert.NotNil(t, httpResponse)
-			assert.NotNil(t, responsePayload)
-
-			assert.Equal(t, http.StatusOK, httpResponse.StatusCode)
+			createFeature(clientContext, t, newFeature)
 		})
 
 	t.Run("readout feature", func(t *testing.T) {
@@ -102,4 +87,75 @@ func TestCanCreateAndReadFeature(t *testing.T) {
 		assert.Equal(t, *featureResponse.Feature.Environments[growthBookEnvironmentName].Rules[0].FeatureForceRule.Value, forcedValue)
 	},
 	)
+}
+
+func TestCanReadAllFeatures(t *testing.T) {
+	clientContext := generateClientContext(t)
+
+	t.Run("Read with pagination", func(t *testing.T) {
+		// arrange
+		randomFeatures := make([]models.PostFeatureRequest, 10)
+		for i := range randomFeatures {
+			randomFeatures[i] = *generateRandomFeature()
+			createFeature(clientContext, t, randomFeatures[i])
+			time.Sleep(time.Second)
+		}
+		clt := gogrowthbook.NewAPIClient(gogrowthbook.NewConfiguration())
+
+		// act
+		resp, httpResp, errDoingReq := clt.FeaturesAPI.ListFeatures(clientContext).Limit(1).Execute()
+
+		// assert
+		assert.NoError(t, errDoingReq)
+		assert.NotNil(t, resp)
+		assert.NotNil(t, httpResp)
+		assert.Equal(t, http.StatusOK, httpResp.StatusCode)
+
+		assert.NotNil(t, resp.HasMore)
+		assert.True(t, *resp.HasMore)
+
+		assert.NotNil(t, resp.Count)
+		assert.Equal(t, 1, *resp.Count)
+
+		assert.NotNil(t, resp.Total)
+		assert.GreaterOrEqual(t, *resp.Total, len(randomFeatures))
+	})
+}
+
+func createFeature(ctx context.Context, t *testing.T, feature models.PostFeatureRequest) {
+	cfg := gogrowthbook.NewConfiguration()
+	client := gogrowthbook.NewAPIClient(cfg)
+	newFeatureReq := client.FeaturesAPI.PostFeature(ctx).PostFeatureRequest(feature)
+
+	responsePayload, httpResponse, errDoingReq := newFeatureReq.Execute()
+	assert.NoErrorf(t, errDoingReq, "The request should return success", errDoingReq)
+	assert.NotNil(t, httpResponse)
+	assert.NotNil(t, responsePayload)
+
+	assert.Equalf(t, http.StatusOK, httpResponse.StatusCode, httpResponse.Status)
+}
+
+func generateRandomFeature() *models.PostFeatureRequest {
+	randomizer := fmt.Sprintf("%d", time.Now().Unix())
+	id := fmt.Sprintf("gogrowthbook-tests-%s", randomizer)
+	description := "Feature created by tests of package github.com/JoseFMP/gogrowthbook"
+	return &models.PostFeatureRequest{
+		Id:           id,
+		ValueType:    "string",
+		Description:  &description,
+		Environments: map[string]models.PostFeatureRequestEnvironmentsValue{},
+	}
+}
+
+func generateClientContext(t *testing.T) context.Context {
+	secretKey := os.Getenv(growthBookSecretKeyEnvName)
+	if secretKey == "" {
+		t.Logf(
+			"To run this test you must specify a GrowthBook secret key with admin rights through the environment variable named %s",
+			growthBookSecretKeyEnvName)
+		t.FailNow()
+	}
+
+	clientContext := context.Background()
+	return context.WithValue(clientContext, gogrowthbook.ContextAccessToken, secretKey)
 }

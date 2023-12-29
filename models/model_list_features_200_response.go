@@ -21,12 +21,12 @@ var _ common.MappedNullable = &ListFeatures200Response{}
 
 // ListFeatures200Response struct for ListFeatures200Response
 type ListFeatures200Response struct {
-	Limit interface{} `json:"limit"`
-	Offset interface{} `json:"offset"`
-	Count interface{} `json:"count"`
-	Total interface{} `json:"total"`
-	HasMore interface{} `json:"hasMore"`
-	NextOffset interface{} `json:"nextOffset"`
+	Limit *int `json:"limit"`
+	Offset *int `json:"offset"`
+	Count *int `json:"count"`
+	Total *int `json:"total"`
+	HasMore *bool `json:"hasMore"`
+	NextOffset *int `json:"nextOffset"`
 	Features []Feature `json:"features"`
 }
 
@@ -36,7 +36,7 @@ type _ListFeatures200Response ListFeatures200Response
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListFeatures200Response(limit interface{}, offset interface{}, count interface{}, total interface{}, hasMore interface{}, nextOffset interface{}, features []Feature) *ListFeatures200Response {
+func NewListFeatures200Response(limit *int, offset *int, count *int, total *int, hasMore *bool, nextOffset *int, features []Feature) *ListFeatures200Response {
 	this := ListFeatures200Response{}
 	this.Limit = limit
 	this.Offset = offset
@@ -70,15 +70,15 @@ func (o *ListFeatures200Response) GetLimit() interface{} {
 // GetLimitOk returns a tuple with the Limit field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListFeatures200Response) GetLimitOk() (*interface{}, bool) {
+func (o *ListFeatures200Response) GetLimitOk() (*int, bool) {
 	if o == nil || common.IsNil(o.Limit) {
 		return nil, false
 	}
-	return &o.Limit, true
+	return o.Limit, true
 }
 
 // SetLimit sets field value
-func (o *ListFeatures200Response) SetLimit(v interface{}) {
+func (o *ListFeatures200Response) SetLimit(v *int) {
 	o.Limit = v
 }
 
@@ -96,15 +96,15 @@ func (o *ListFeatures200Response) GetOffset() interface{} {
 // GetOffsetOk returns a tuple with the Offset field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListFeatures200Response) GetOffsetOk() (*interface{}, bool) {
+func (o *ListFeatures200Response) GetOffsetOk() (*int, bool) {
 	if o == nil || common.IsNil(o.Offset) {
 		return nil, false
 	}
-	return &o.Offset, true
+	return o.Offset, true
 }
 
 // SetOffset sets field value
-func (o *ListFeatures200Response) SetOffset(v interface{}) {
+func (o *ListFeatures200Response) SetOffset(v *int) {
 	o.Offset = v
 }
 
@@ -122,15 +122,15 @@ func (o *ListFeatures200Response) GetCount() interface{} {
 // GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListFeatures200Response) GetCountOk() (*interface{}, bool) {
+func (o *ListFeatures200Response) GetCountOk() (*int, bool) {
 	if o == nil || common.IsNil(o.Count) {
 		return nil, false
 	}
-	return &o.Count, true
+	return o.Count, true
 }
 
 // SetCount sets field value
-func (o *ListFeatures200Response) SetCount(v interface{}) {
+func (o *ListFeatures200Response) SetCount(v *int) {
 	o.Count = v
 }
 
@@ -148,15 +148,15 @@ func (o *ListFeatures200Response) GetTotal() interface{} {
 // GetTotalOk returns a tuple with the Total field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListFeatures200Response) GetTotalOk() (*interface{}, bool) {
+func (o *ListFeatures200Response) GetTotalOk() (*int, bool) {
 	if o == nil || common.IsNil(o.Total) {
 		return nil, false
 	}
-	return &o.Total, true
+	return o.Total, true
 }
 
 // SetTotal sets field value
-func (o *ListFeatures200Response) SetTotal(v interface{}) {
+func (o *ListFeatures200Response) SetTotal(v *int) {
 	o.Total = v
 }
 
@@ -174,15 +174,15 @@ func (o *ListFeatures200Response) GetHasMore() interface{} {
 // GetHasMoreOk returns a tuple with the HasMore field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListFeatures200Response) GetHasMoreOk() (*interface{}, bool) {
+func (o *ListFeatures200Response) GetHasMoreOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.HasMore) {
 		return nil, false
 	}
-	return &o.HasMore, true
+	return o.HasMore, true
 }
 
 // SetHasMore sets field value
-func (o *ListFeatures200Response) SetHasMore(v interface{}) {
+func (o *ListFeatures200Response) SetHasMore(v *bool) {
 	o.HasMore = v
 }
 
@@ -200,15 +200,15 @@ func (o *ListFeatures200Response) GetNextOffset() interface{} {
 // GetNextOffsetOk returns a tuple with the NextOffset field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListFeatures200Response) GetNextOffsetOk() (*interface{}, bool) {
+func (o *ListFeatures200Response) GetNextOffsetOk() (*int, bool) {
 	if o == nil || common.IsNil(o.NextOffset) {
 		return nil, false
 	}
-	return &o.NextOffset, true
+	return o.NextOffset, true
 }
 
 // SetNextOffset sets field value
-func (o *ListFeatures200Response) SetNextOffset(v interface{}) {
+func (o *ListFeatures200Response) SetNextOffset(v *int) {
 	o.NextOffset = v
 }
 

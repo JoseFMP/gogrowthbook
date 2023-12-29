@@ -128,26 +128,26 @@ func (a *FeaturesAPIService) GetFeatureExecute(r ApiGetFeatureRequest) (*models.
 type ApiListFeaturesRequest struct {
 	ctx context.Context
 	ApiService *FeaturesAPIService
-	limit *interface{}
-	offset *interface{}
-	projectId *interface{}
+	limit *int
+	offset *int
+	projectId *string
 }
 
 // The number of items to return
-func (r ApiListFeaturesRequest) Limit(limit interface{}) ApiListFeaturesRequest {
+func (r ApiListFeaturesRequest) Limit(limit int) ApiListFeaturesRequest {
 	r.limit = &limit
 	return r
 }
 
 // How many items to skip (use in conjunction with limit for pagination)
-func (r ApiListFeaturesRequest) Offset(offset interface{}) ApiListFeaturesRequest {
-	r.offset = &offset
+func (r ApiListFeaturesRequest) Offset(offset *int) ApiListFeaturesRequest {
+	r.offset = offset
 	return r
 }
 
 // Filter by project id
-func (r ApiListFeaturesRequest) ProjectId(projectId interface{}) ApiListFeaturesRequest {
-	r.projectId = &projectId
+func (r ApiListFeaturesRequest) ProjectId(projectId *string) ApiListFeaturesRequest {
+	r.projectId = projectId
 	return r
 }
 
@@ -192,13 +192,13 @@ func (a *FeaturesAPIService) ListFeaturesExecute(r ApiListFeaturesRequest) (*mod
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	} else {
-		var defaultValue interface{} = 10
+		var defaultValue int = 10
 		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	} else {
-		var defaultValue interface{} = 0
+		var defaultValue int = 0
 		r.offset = &defaultValue
 	}
 	if r.projectId != nil {
