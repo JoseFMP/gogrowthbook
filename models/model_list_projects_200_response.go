@@ -162,9 +162,9 @@ func (o *ListProjects200Response) SetTotal(v *int) {
 
 // GetHasMore returns the HasMore field value
 // If the value is explicit nil, the zero value for interface{} will be returned
-func (o *ListProjects200Response) GetHasMore() interface{} {
+func (o *ListProjects200Response) GetHasMore() *bool {
 	if o == nil {
-		var ret interface{}
+		var ret *bool
 		return ret
 	}
 

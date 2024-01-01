@@ -25,7 +25,7 @@ type ListSdkConnections200Response struct {
 	Offset interface{} `json:"offset"`
 	Count interface{} `json:"count"`
 	Total interface{} `json:"total"`
-	HasMore interface{} `json:"hasMore"`
+	HasMore *bool `json:"hasMore"`
 	NextOffset interface{} `json:"nextOffset"`
 	Connections []SdkConnection `json:"connections,omitempty"`
 }
@@ -36,7 +36,7 @@ type _ListSdkConnections200Response ListSdkConnections200Response
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListSdkConnections200Response(limit interface{}, offset interface{}, count interface{}, total interface{}, hasMore interface{}, nextOffset interface{}) *ListSdkConnections200Response {
+func NewListSdkConnections200Response(limit interface{}, offset interface{}, count interface{}, total interface{}, hasMore *bool, nextOffset interface{}) *ListSdkConnections200Response {
 	this := ListSdkConnections200Response{}
 	this.Limit = limit
 	this.Offset = offset
@@ -161,9 +161,9 @@ func (o *ListSdkConnections200Response) SetTotal(v interface{}) {
 
 // GetHasMore returns the HasMore field value
 // If the value is explicit nil, the zero value for interface{} will be returned
-func (o *ListSdkConnections200Response) GetHasMore() interface{} {
+func (o *ListSdkConnections200Response) GetHasMore() *bool {
 	if o == nil {
-		var ret interface{}
+		var ret *bool
 		return ret
 	}
 
@@ -173,15 +173,15 @@ func (o *ListSdkConnections200Response) GetHasMore() interface{} {
 // GetHasMoreOk returns a tuple with the HasMore field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ListSdkConnections200Response) GetHasMoreOk() (*interface{}, bool) {
+func (o *ListSdkConnections200Response) GetHasMoreOk() (*bool, bool) {
 	if o == nil || common.IsNil(o.HasMore) {
 		return nil, false
 	}
-	return &o.HasMore, true
+	return o.HasMore, true
 }
 
 // SetHasMore sets field value
-func (o *ListSdkConnections200Response) SetHasMore(v interface{}) {
+func (o *ListSdkConnections200Response) SetHasMore(v *bool) {
 	o.HasMore = v
 }
 
