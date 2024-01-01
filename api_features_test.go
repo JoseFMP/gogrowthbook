@@ -110,13 +110,12 @@ func TestCanReadAllFeatures(t *testing.T) {
 		assert.Equal(t, http.StatusOK, httpResp.StatusCode)
 
 		assert.NotNil(t, resp.HasMore)
-		assert.True(t, *resp.HasMore)
+		assert.True(t, resp.HasMore)
 
 		assert.NotNil(t, resp.Count)
-		assert.Equal(t, 1, *resp.Count)
+		assert.Equal(t, int32(1), resp.Count)
 
-		assert.NotNil(t, resp.Total)
-		assert.GreaterOrEqual(t, *resp.Total, len(randomFeatures))
+		assert.GreaterOrEqual(t, resp.Total, int32(len(randomFeatures)))
 	})
 }
 

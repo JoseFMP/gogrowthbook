@@ -64,19 +64,21 @@ func GetGrowthBookMockServerHandler(t *testing.T, secretKey string, projects []m
 			w.Header().Add("Content-Type", "application/json")
 			w.WriteHeader(http.StatusOK)
 
-			limit := 10
-			count := len(projects)
-			offset := 0
+			limit := int32(10)
+			count := int32(len(projects))
+			offset := int32(0)
 			hasMore := false
 			projectsResponse := models.ListProjects200Response{
-				Projects:   projects,
-				Limit:      &limit,
-				Count:      &count,
-				Offset:     &offset,
-				Total:      &count,
-				HasMore:    &hasMore,
-				NextOffset: &offset,
+				Projects: projects,
 			}
+
+			projectsResponse.SetLimit(limit)
+			projectsResponse.SetCount(count)
+			projectsResponse.SetOffset(offset)
+			projectsResponse.SetTotal(count)
+			projectsResponse.SetHasMore(hasMore)
+			projectsResponse.SetNextOffset(&offset)
+
 			payload, errEncoding := json.Marshal(projectsResponse)
 			assert.NoError(t, errEncoding)
 
