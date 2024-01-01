@@ -27,7 +27,7 @@ type ProjectsAPIService service
 type ApiGetProjectRequest struct {
 	ctx context.Context
 	ApiService *ProjectsAPIService
-	id interface{}
+	id string
 }
 
 func (r ApiGetProjectRequest) Execute() (*models.GetProject200Response, *http.Response, error) {
@@ -41,7 +41,7 @@ GetProject Get a single project
  @param id The id of the requested resource
  @return ApiGetProjectRequest
 */
-func (a *ProjectsAPIService) GetProject(ctx context.Context, id interface{}) ApiGetProjectRequest {
+func (a *ProjectsAPIService) GetProject(ctx context.Context, id string) ApiGetProjectRequest {
 	return ApiGetProjectRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -128,19 +128,19 @@ func (a *ProjectsAPIService) GetProjectExecute(r ApiGetProjectRequest) (*models.
 type ApiListProjectsRequest struct {
 	ctx context.Context
 	ApiService *ProjectsAPIService
-	limit *interface{}
-	offset *interface{}
+	limit *int
+	offset *int
 }
 
 // The number of items to return
-func (r ApiListProjectsRequest) Limit(limit interface{}) ApiListProjectsRequest {
-	r.limit = &limit
+func (r ApiListProjectsRequest) Limit(limit *int) ApiListProjectsRequest {
+	r.limit = limit
 	return r
 }
 
 // How many items to skip (use in conjunction with limit for pagination)
-func (r ApiListProjectsRequest) Offset(offset interface{}) ApiListProjectsRequest {
-	r.offset = &offset
+func (r ApiListProjectsRequest) Offset(offset *int) ApiListProjectsRequest {
+	r.offset = offset
 	return r
 }
 
@@ -185,13 +185,13 @@ func (a *ProjectsAPIService) ListProjectsExecute(r ApiListProjectsRequest) (*mod
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	} else {
-		var defaultValue interface{} = 10
+		var defaultValue int = 10
 		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	} else {
-		var defaultValue interface{} = 0
+		var defaultValue int = 0
 		r.offset = &defaultValue
 	}
 	// to determine the Content-Type header

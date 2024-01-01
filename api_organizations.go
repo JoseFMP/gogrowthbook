@@ -28,8 +28,8 @@ type ApiListOrganizationsRequest struct {
 	ctx context.Context
 	ApiService *OrganizationsAPIService
 	search *string
-	limit *interface{}
-	offset *interface{}
+	limit *int
+	offset *int
 }
 
 // Search string to search organization names, owner emails, and external ids by
@@ -39,14 +39,14 @@ func (r ApiListOrganizationsRequest) Search(search string) ApiListOrganizationsR
 }
 
 // The number of items to return
-func (r ApiListOrganizationsRequest) Limit(limit interface{}) ApiListOrganizationsRequest {
-	r.limit = &limit
+func (r ApiListOrganizationsRequest) Limit(limit *int) ApiListOrganizationsRequest {
+	r.limit = limit
 	return r
 }
 
 // How many items to skip (use in conjunction with limit for pagination)
-func (r ApiListOrganizationsRequest) Offset(offset interface{}) ApiListOrganizationsRequest {
-	r.offset = &offset
+func (r ApiListOrganizationsRequest) Offset(offset*int) ApiListOrganizationsRequest {
+	r.offset = offset
 	return r
 }
 
@@ -94,13 +94,13 @@ func (a *OrganizationsAPIService) ListOrganizationsExecute(r ApiListOrganization
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "")
 	} else {
-		var defaultValue interface{} = 10
+		var defaultValue int = 10
 		r.limit = &defaultValue
 	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "")
 	} else {
-		var defaultValue interface{} = 0
+		var defaultValue int = 0
 		r.offset = &defaultValue
 	}
 	// to determine the Content-Type header

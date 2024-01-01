@@ -4,21 +4,19 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"os"
 	"testing"
 	"time"
 
 	"github.com/JoseFMP/gogrowthbook"
 	"github.com/JoseFMP/gogrowthbook/models"
+	"github.com/JoseFMP/gogrowthbook/test_utils"
 	"github.com/stretchr/testify/assert"
 )
-
-const growthBookSecretKeyEnvName = "GROWTHBOOK_SECRET_KEY"
 
 // TestCanCreateAndReadFeature
 // creates a feature in GrowthBook, and reads it out afterward to double check it was really created
 func TestCanCreateAndReadFeature(t *testing.T) {
-	clientContext := generateClientContext(t)
+	clientContext := test_utils.GenerateClientCtxRemoteServer(t)
 
 	randomNumber := time.Now().UnixMilli()
 	featureID := fmt.Sprintf("go-growthbook-integration-test-%d", randomNumber)
@@ -90,7 +88,7 @@ func TestCanCreateAndReadFeature(t *testing.T) {
 }
 
 func TestCanReadAllFeatures(t *testing.T) {
-	clientContext := generateClientContext(t)
+	clientContext := test_utils.GenerateClientCtxRemoteServer(t)
 
 	t.Run("Read with pagination", func(t *testing.T) {
 		// arrange
@@ -145,17 +143,4 @@ func generateRandomFeature() *models.PostFeatureRequest {
 		Description:  &description,
 		Environments: map[string]models.PostFeatureRequestEnvironmentsValue{},
 	}
-}
-
-func generateClientContext(t *testing.T) context.Context {
-	secretKey := os.Getenv(growthBookSecretKeyEnvName)
-	if secretKey == "" {
-		t.Logf(
-			"To run this test you must specify a GrowthBook secret key with admin rights through the environment variable named %s",
-			growthBookSecretKeyEnvName)
-		t.FailNow()
-	}
-
-	clientContext := context.Background()
-	return context.WithValue(clientContext, gogrowthbook.ContextAccessToken, secretKey)
 }

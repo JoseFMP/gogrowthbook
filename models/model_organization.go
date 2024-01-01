@@ -21,15 +21,15 @@ var _ common.MappedNullable = &Organization{}
 // Organization struct for Organization
 type Organization struct {
 	// The Growthbook unique identifier for the organization
-	Id interface{} `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	// An optional identifier that you use within your company for the organization
-	ExternalId interface{} `json:"externalId,omitempty"`
+	ExternalId *string `json:"externalId,omitempty"`
 	// The date the organization was created
-	DateCreated interface{} `json:"dateCreated,omitempty"`
+	DateCreated *string `json:"dateCreated,omitempty"`
 	// The name of the organization
-	Name interface{} `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	// The email address of the organization owner
-	OwnerEmail interface{} `json:"ownerEmail,omitempty"`
+	OwnerEmail *string `json:"ownerEmail,omitempty"`
 }
 
 // NewOrganization instantiates a new Organization object
@@ -61,11 +61,11 @@ func (o *Organization) GetId() interface{} {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Organization) GetIdOk() (*interface{}, bool) {
+func (o *Organization) GetIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
@@ -78,7 +78,7 @@ func (o *Organization) HasId() bool {
 }
 
 // SetId gets a reference to the given interface{} and assigns it to the Id field.
-func (o *Organization) SetId(v interface{}) {
+func (o *Organization) SetId(v *string) {
 	o.Id = v
 }
 
@@ -94,11 +94,11 @@ func (o *Organization) GetExternalId() interface{} {
 // GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Organization) GetExternalIdOk() (*interface{}, bool) {
+func (o *Organization) GetExternalIdOk() (*string, bool) {
 	if o == nil || common.IsNil(o.ExternalId) {
 		return nil, false
 	}
-	return &o.ExternalId, true
+	return o.ExternalId, true
 }
 
 // HasExternalId returns a boolean if a field has been set.
@@ -111,7 +111,7 @@ func (o *Organization) HasExternalId() bool {
 }
 
 // SetExternalId gets a reference to the given interface{} and assigns it to the ExternalId field.
-func (o *Organization) SetExternalId(v interface{}) {
+func (o *Organization) SetExternalId(v *string) {
 	o.ExternalId = v
 }
 
@@ -127,11 +127,11 @@ func (o *Organization) GetDateCreated() interface{} {
 // GetDateCreatedOk returns a tuple with the DateCreated field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Organization) GetDateCreatedOk() (*interface{}, bool) {
+func (o *Organization) GetDateCreatedOk() (*string, bool) {
 	if o == nil || common.IsNil(o.DateCreated) {
 		return nil, false
 	}
-	return &o.DateCreated, true
+	return o.DateCreated, true
 }
 
 // HasDateCreated returns a boolean if a field has been set.
@@ -144,7 +144,7 @@ func (o *Organization) HasDateCreated() bool {
 }
 
 // SetDateCreated gets a reference to the given interface{} and assigns it to the DateCreated field.
-func (o *Organization) SetDateCreated(v interface{}) {
+func (o *Organization) SetDateCreated(v *string) {
 	o.DateCreated = v
 }
 
@@ -160,11 +160,11 @@ func (o *Organization) GetName() interface{} {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Organization) GetNameOk() (*interface{}, bool) {
+func (o *Organization) GetNameOk() (*string, bool) {
 	if o == nil || common.IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
@@ -177,7 +177,7 @@ func (o *Organization) HasName() bool {
 }
 
 // SetName gets a reference to the given interface{} and assigns it to the Name field.
-func (o *Organization) SetName(v interface{}) {
+func (o *Organization) SetName(v *string) {
 	o.Name = v
 }
 
@@ -193,11 +193,11 @@ func (o *Organization) GetOwnerEmail() interface{} {
 // GetOwnerEmailOk returns a tuple with the OwnerEmail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *Organization) GetOwnerEmailOk() (*interface{}, bool) {
+func (o *Organization) GetOwnerEmailOk() (*string, bool) {
 	if o == nil || common.IsNil(o.OwnerEmail) {
 		return nil, false
 	}
-	return &o.OwnerEmail, true
+	return o.OwnerEmail, true
 }
 
 // HasOwnerEmail returns a boolean if a field has been set.
@@ -210,7 +210,7 @@ func (o *Organization) HasOwnerEmail() bool {
 }
 
 // SetOwnerEmail gets a reference to the given interface{} and assigns it to the OwnerEmail field.
-func (o *Organization) SetOwnerEmail(v interface{}) {
+func (o *Organization) SetOwnerEmail(v *string) {
 	o.OwnerEmail = v
 }
 
